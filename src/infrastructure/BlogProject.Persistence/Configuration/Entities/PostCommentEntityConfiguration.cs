@@ -13,6 +13,9 @@ namespace BlogProject.Persistence.Configuration.Entities
     {
         public void Configure(EntityTypeBuilder<PostComment> builder)
         {
+
+            builder.ToTable("TblPostComment");
+
             builder.HasKey(x => x.Id);
 
             builder

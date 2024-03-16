@@ -13,6 +13,9 @@ namespace BlogProject.Persistence.Configuration.Entities
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
+
+            builder.ToTable("TblUser");
+
             builder.HasKey(x => x.Id);
 
 

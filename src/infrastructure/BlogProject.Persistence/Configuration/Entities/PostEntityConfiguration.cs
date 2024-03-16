@@ -13,7 +13,10 @@ namespace BlogProject.Persistence.Configuration.Entities
     {
         public void Configure(EntityTypeBuilder<Post> builder)
         {
-            builder.HasKey(a=>a.Id);
+
+            builder.ToTable("TblPost");
+
+            builder.HasKey(a => a.Id);
 
             builder
                 .Property(a => a.Title)

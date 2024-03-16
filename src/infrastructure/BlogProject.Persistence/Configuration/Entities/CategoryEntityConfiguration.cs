@@ -13,12 +13,15 @@ namespace BlogProject.Persistence.Configuration.Entities
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
+            builder.ToTable("TblCategory");
+
             builder.HasKey(a=>a.Id);
 
             builder
                 .Property(a => a.Title)
-                .IsRequired()
-                .HasMaxLength(50);
+                .IsRequired();
+
+           
          
         }
     }
