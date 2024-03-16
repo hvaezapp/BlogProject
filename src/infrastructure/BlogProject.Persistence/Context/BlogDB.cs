@@ -1,10 +1,5 @@
 ﻿using BlogProject.Domain.entity;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlogProject.Persistence.Context
 {
@@ -13,7 +8,20 @@ namespace BlogProject.Persistence.Context
 
         public BlogDB(DbContextOptions<BlogDB> options) : base(options)
         {
-        
+
+        }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            // Add Entities Configuration to migration
+
+            modelBuilder
+                .ApplyConfigurationsFromAssembly(typeof(BlogDB).Assembly);
+
+
+            base.OnModelCreating(modelBuilder);
         }
 
 
