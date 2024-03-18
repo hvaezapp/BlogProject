@@ -14,16 +14,17 @@ namespace BlogProject.Persistence.Configuration.Common
     public static class ConfigureService
     {
         public static void ConfigureServices(this IServiceCollection services , 
-            IConfiguration configuration)
+                                                  IConfiguration configuration)
         {
 
+            // Introduce Db to EF-Core
             services.AddDbContext<BlogDB>(s =>
             {
                 s.UseSqlServer(configuration.GetConnectionString("SqlSever"));
             });
 
 
-            //..........
+            //.......... 
 
         }
     }

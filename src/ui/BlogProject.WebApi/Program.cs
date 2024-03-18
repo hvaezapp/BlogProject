@@ -1,3 +1,7 @@
+using BlogProject.Persistence.Configuration.Common;
+using BlogProject.Persistence.Context;
+using Microsoft.Extensions.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,7 +11,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// db config
+// Db config
+builder.Services.ConfigureServices(builder.Configuration);
+
 
 
 
