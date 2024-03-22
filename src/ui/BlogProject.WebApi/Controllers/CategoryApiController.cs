@@ -1,4 +1,5 @@
-﻿using BlogProject.Domain.entity;
+﻿using BlogProject.Application.Contract.Persistence;
+using BlogProject.Domain.entity;
 using BlogProject.Persistence.Context;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,16 +12,21 @@ namespace BlogProject.WebApi.Controllers
     public class CategoryApiController : ControllerBase
     {
         private readonly BlogDB _context;
+        private readonly ICategoryRepository _categoryRepository;
 
-        public CategoryApiController(BlogDB context)
+        public CategoryApiController(BlogDB context , ICategoryRepository categoryRepository)
         {
             _context = context;
+            _categoryRepository = categoryRepository;
         }
 
 
         [HttpPost]
         public async Task<IActionResult> Create(Category category)
         {
+            await _categoryRepository.Create(category);
+
+
             await _context.Category.AddAsync(category);
             await _context.SaveChangesAsync();
 

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BlogProject.Application.Contract.Persistence
+﻿namespace BlogProject.Application.Contract.Persistence
 {
     public interface IRepository<T> where T : class
     {
@@ -20,6 +14,9 @@ namespace BlogProject.Application.Contract.Persistence
         Task Update(T entity);
         Task Delete(T entity);
         Task DeleteById(long id);
+        Task<T> GetById(long id);
+
+        Task<int> SaveAsync();
 
     }
 }

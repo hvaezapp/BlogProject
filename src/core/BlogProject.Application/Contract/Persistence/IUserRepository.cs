@@ -2,8 +2,7 @@
 
 namespace BlogProject.Application.Contract.Persistence
 {
-    public interface ICategoryRepository : IRepository<Category>
+    public interface IUserRepository : IRepository<User>
     {
-        // Methods
     }
 }
