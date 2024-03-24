@@ -1,4 +1,5 @@
-using BlogProject.Persistence.Configuration.Common;
+using BlogProject.Persistence.Configuration.Database;
+using BlogProject.Persistence.Configuration.Repositories;
 using BlogProject.Persistence.Context;
 using Microsoft.Extensions.Configuration;
 
@@ -13,7 +14,10 @@ builder.Services.AddSwaggerGen();
 
 
 // Db config
-builder.Services.ConfigureServices(builder.Configuration);
+builder.Services.ConfigureAppDatabase(builder.Configuration);
+
+// Repositories config
+builder.Services.ConfigureAppRepositories();
 
 
 

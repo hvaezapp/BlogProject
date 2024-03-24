@@ -2,18 +2,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BlogProject.Persistence.Configuration.Common
+namespace BlogProject.Persistence.Configuration.Database
 {
-    public static class ConfigureService
+    public static class ConfigureDatabase
     {
-        public static void ConfigureServices(this IServiceCollection services , 
+        public static void ConfigureAppDatabase(this IServiceCollection services,
                                                   IConfiguration configuration)
         {
 
@@ -22,9 +16,6 @@ namespace BlogProject.Persistence.Configuration.Common
             {
                 s.UseSqlServer(configuration.GetConnectionString("SqlSever"));
             });
-
-
-            //.......... 
 
         }
     }

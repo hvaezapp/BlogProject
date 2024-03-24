@@ -11,12 +11,10 @@ namespace BlogProject.WebApi.Controllers
     [ApiController]
     public class CategoryApiController : ControllerBase
     {
-        private readonly BlogDB _context;
         private readonly ICategoryRepository _categoryRepository;
 
-        public CategoryApiController(BlogDB context , ICategoryRepository categoryRepository)
+        public CategoryApiController(ICategoryRepository categoryRepository)
         {
-            _context = context;
             _categoryRepository = categoryRepository;
         }
 
@@ -25,11 +23,7 @@ namespace BlogProject.WebApi.Controllers
         public async Task<IActionResult> Create(Category category)
         {
             await _categoryRepository.Create(category);
-
-
-            await _context.Category.AddAsync(category);
-            await _context.SaveChangesAsync();
-
+            await  _categoryRepository.SaveAsync();
             return Ok();
         }
 
@@ -37,7 +31,8 @@ namespace BlogProject.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCategories()
         {
-            return Ok( await _context.Category.ToListAsync());
+            var data = await _categoryRepository.GetAll();
+            return Ok(data);
         }
 
 
