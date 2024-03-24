@@ -4,5 +4,6 @@ namespace BlogProject.Application.Contract.Persistence
 {
     public interface IUserRepository : IRepository<User>
     {
+        //Methods
     }
 }

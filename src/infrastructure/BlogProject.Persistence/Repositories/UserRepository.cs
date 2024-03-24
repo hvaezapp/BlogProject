@@ -4,13 +4,13 @@ using BlogProject.Persistence.Context;
 
 namespace BlogProject.Persistence.Repositories
 {
-    public class CategoryRepository : Repository<Category>, ICategoryRepository
+    public class UserRepository : Repository<User>, IUserRepository
     {
         private readonly BlogDB _context;
-        public CategoryRepository(BlogDB context) : base(context)
+        public UserRepository(BlogDB context) : base(context)
         {
             _context = context;
-        }
 
+        }
     }
 }
