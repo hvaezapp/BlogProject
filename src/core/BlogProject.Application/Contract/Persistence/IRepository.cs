@@ -14,7 +14,7 @@ namespace BlogProject.Application.Contract.Persistence
         Task Create(T entity);
         Task<IEnumerable<T>> GetAll();
         Task<IEnumerable<T>> GetAll(Expression<Func<T,bool>> expression);
-        Task Update(T entity);
+        Task<T> Update(T entity);
         Task Delete(T entity);
         Task DeleteById(long id);
         Task<T> GetById(long id);

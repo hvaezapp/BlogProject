@@ -1,7 +1,6 @@
 using BlogProject.Persistence.Configuration.Database;
 using BlogProject.Persistence.Configuration.Repositories;
-using BlogProject.Persistence.Context;
-using Microsoft.Extensions.Configuration;
+using BlogProject.Application.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +18,8 @@ builder.Services.ConfigureAppDatabase(builder.Configuration);
 // Repositories config
 builder.Services.ConfigureAppRepositories();
 
+// Configure Services in App Layer
+builder.Services.ConfigureServices();
 
 
 

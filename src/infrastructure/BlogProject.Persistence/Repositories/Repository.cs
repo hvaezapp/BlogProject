@@ -1,4 +1,5 @@
-﻿using BlogProject.Application.Contract.Persistence;
+﻿using Azure.Core;
+using BlogProject.Application.Contract.Persistence;
 using BlogProject.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -59,14 +60,14 @@ namespace BlogProject.Persistence.Repositories
 
 
 
-        public async Task Update(T entity)
+        public async Task<T> Update(T entity)
         {
             if (_table.Entry(entity).State == EntityState.Detached)
                 _table.Attach(entity);
 
 
             _table.Entry(entity).State = EntityState.Modified;
-
+            return entity;
         }
 
 

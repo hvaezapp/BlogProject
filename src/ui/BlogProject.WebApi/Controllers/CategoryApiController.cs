@@ -1,9 +1,8 @@
 ﻿using BlogProject.Application.Contract.Persistence;
+using BlogProject.Application.Features.Category.Request.Queries;
 using BlogProject.Domain.entity;
-using BlogProject.Persistence.Context;
-using Microsoft.AspNetCore.Http;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace BlogProject.WebApi.Controllers
 {
@@ -12,29 +11,81 @@ namespace BlogProject.WebApi.Controllers
     public class CategoryApiController : ControllerBase
     {
         private readonly ICategoryRepository _categoryRepository;
+        private readonly IMediator _mediator;
 
-        public CategoryApiController(ICategoryRepository categoryRepository)
+        public CategoryApiController(ICategoryRepository categoryRepository , 
+               IMediator mediator)
         {
             _categoryRepository = categoryRepository;
+            _mediator = mediator;
+
         }
 
 
+        /// <summary>
+        /// دریافت لیست دسته بندی ها
+        /// </summary>
+        /// <returns></returns>
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            //var data = await _categoryRepository.GetAll();
+            var result = await _mediator.Send(new GetAllCategoriesQueryRequest());
+            return Ok(result);
+        }
+
+
+
+        /// <summary>
+        /// ایجاد دسته بندی جدید
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
+
         [HttpPost]
-        public async Task<IActionResult> Create(Category category)
+        public async Task<IActionResult> Create([FromBody] Category category)
         {
             await _categoryRepository.Create(category);
-            await  _categoryRepository.SaveAsync();
+            await _categoryRepository.SaveAsync();
+
+
             return Ok();
         }
 
 
-        [HttpGet]
-        public async Task<IActionResult> GetCategories()
+
+        /// <summary>
+        ///  اپدیت دسته بندی موجود
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] Category category)
         {
-            var data = await _categoryRepository.GetAll();
-            return Ok(data);
+            var entity = await _categoryRepository.Update(category);
+            await _categoryRepository.SaveAsync();
+
+            return Ok(entity);
         }
 
+
+
+        /// <summary>
+        /// حدف دسته بندی خاص
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(long id)
+        {
+            await _categoryRepository.DeleteById(id);
+            await _categoryRepository.SaveAsync();
+
+            return Ok();
+        }
 
     }
 }
