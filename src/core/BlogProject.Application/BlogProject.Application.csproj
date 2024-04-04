@@ -16,8 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Category\Handler\Commands\" />
-    <Folder Include="Features\Category\Request\Commands\" />
     <Folder Include="Features\Post\" />
   </ItemGroup>
 

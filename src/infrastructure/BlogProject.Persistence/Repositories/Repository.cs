@@ -21,9 +21,10 @@ namespace BlogProject.Persistence.Repositories
             _table = _context.Set<T>();
         }
 
-        public async Task Create(T entity)
+        public async Task<T> Create(T entity)
         {
             await _table.AddAsync(entity);
+            return entity;
         }
 
         public async Task Delete(T entity)

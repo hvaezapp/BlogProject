@@ -1,4 +1,6 @@
 ﻿using BlogProject.Application.Contract.Persistence;
+using BlogProject.Application.Dto.Category;
+using BlogProject.Application.Features.Category.Request.Commands;
 using BlogProject.Application.Features.Category.Request.Queries;
 using BlogProject.Domain.entity;
 using MediatR;
@@ -13,7 +15,7 @@ namespace BlogProject.WebApi.Controllers
         private readonly ICategoryRepository _categoryRepository;
         private readonly IMediator _mediator;
 
-        public CategoryApiController(ICategoryRepository categoryRepository , 
+        public CategoryApiController(ICategoryRepository categoryRepository,
                IMediator mediator)
         {
             _categoryRepository = categoryRepository;
@@ -30,7 +32,6 @@ namespace BlogProject.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            //var data = await _categoryRepository.GetAll();
             var result = await _mediator.Send(new GetAllCategoriesQueryRequest());
             return Ok(result);
         }
@@ -44,13 +45,15 @@ namespace BlogProject.WebApi.Controllers
         /// <returns></returns>
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Category category)
+        public async Task<IActionResult> Create([FromBody] CreateCategoryDto category)
         {
-            await _categoryRepository.Create(category);
-            await _categoryRepository.SaveAsync();
-
-
-            return Ok();
+         
+            var result = await _mediator
+                                    .Send(new CreateCategoryCommandRequest 
+                                    { 
+                                        CategoryDto  = category
+                                    });
+            return Ok(result);
         }
 
 

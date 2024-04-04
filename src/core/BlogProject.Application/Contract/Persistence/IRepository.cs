@@ -11,7 +11,7 @@ namespace BlogProject.Application.Contract.Persistence
         //UPDATE
         //DELETE
 
-        Task Create(T entity);
+        Task<T> Create(T entity);
         Task<IEnumerable<T>> GetAll();
         Task<IEnumerable<T>> GetAll(Expression<Func<T,bool>> expression);
         Task<T> Update(T entity);
