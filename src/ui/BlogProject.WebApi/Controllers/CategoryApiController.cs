@@ -51,7 +51,7 @@ namespace BlogProject.WebApi.Controllers
             var result = await _mediator
                                     .Send(new CreateCategoryCommandRequest 
                                     { 
-                                        CategoryDto  = category
+                                        CreateCategoryDto  = category
                                     });
             return Ok(result);
         }
