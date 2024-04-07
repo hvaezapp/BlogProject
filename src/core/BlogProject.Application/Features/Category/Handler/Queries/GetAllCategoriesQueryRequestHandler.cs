@@ -5,7 +5,7 @@ using MediatR;
 
 namespace BlogProject.Application.Features.Category.Handler.Queries
 {
-    public class GetAllCategoriesQueryRequestHandler : IRequestHandler<GetAllCategoriesQueryRequest, IEnumerable<CategoryDto>>
+    public class GetAllCategoriesQueryRequestHandler : IRequestHandler<GetAllCategoriesQueryRequest, ApiResponseResult>
     {
         private readonly ICategoryRepository _categoryRepository;
 
@@ -14,17 +14,33 @@ namespace BlogProject.Application.Features.Category.Handler.Queries
             _categoryRepository = categoryRepository;
         }
 
-        public async Task<IEnumerable<CategoryDto>> Handle(GetAllCategoriesQueryRequest request, CancellationToken cancellationToken)
+        public async Task<ApiResponseResult> Handle(GetAllCategoriesQueryRequest request, CancellationToken cancellationToken)
         {
-            var categories = await _categoryRepository
-                                         .GetAll();
+            var api = new ApiResponseResult();
 
-            return categories.Select(a=> new CategoryDto
+            try
             {
-                Id = a.Id,
-                Title  = a.Title
+               
+                // get all categories from database 
+                var categories = await _categoryRepository
+                                        .GetAll();
 
-            }).ToList();
+                var result = categories.Select(a => new CategoryDto
+                {
+                    Id = a.Id,
+                    Title = a.Title
+
+                }).ToList();
+
+
+                api.Success(result);
+            }
+            catch (Exception ex)
+            {
+                api.Error(ex.Message);
+            }
+
+            return api;
         }
     }
 }

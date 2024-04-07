@@ -2,12 +2,11 @@
 using BlogProject.Application.Dto.Category;
 using BlogProject.Application.Dto.Category.Validator;
 using BlogProject.Application.Features.Category.Request.Commands;
-using FluentValidation;
 using MediatR;
 
 namespace BlogProject.Application.Features.Category.Handler.Commands
 {
-    public class CreateCategoryCommandRequestHandler : IRequestHandler<CreateCategoryCommandRequest, CategoryDto>
+    public class CreateCategoryCommandRequestHandler : IRequestHandler<CreateCategoryCommandRequest, ApiResponseResult>
     {
         private readonly ICategoryRepository _categoryRepository;
 
@@ -16,35 +15,53 @@ namespace BlogProject.Application.Features.Category.Handler.Commands
             _categoryRepository = categoryRepository;
         }
 
-        public async Task<CategoryDto> Handle(CreateCategoryCommandRequest request, CancellationToken cancellationToken)
+        public async Task<ApiResponseResult> Handle(CreateCategoryCommandRequest request, CancellationToken cancellationToken)
         {
-            var validator = new CreateCategoryDtoValidator();
+            var api = new ApiResponseResult();
 
-            var validateResult = validator.Validate(request.CreateCategoryDto);
-
-            if (validateResult.IsValid)
+            try
             {
-                var newCategory = new Domain.entity.Category
+                var validator = new CreateCategoryDtoValidator();
+
+                var validateResult = validator.Validate(request.CreateCategoryDto);
+
+                // check data is valid
+                if (validateResult.IsValid)
                 {
-                    Title = request.CreateCategoryDto.Title
-                };
+                    // add data to table
+                    var newCategory = new Domain.entity.Category
+                    {
+                        Title = request.CreateCategoryDto.Title
+                    };
 
-                var result = await _categoryRepository
-                                       .Create(newCategory);
+                    var result = await _categoryRepository
+                                           .Create(newCategory);
 
-                await _categoryRepository.SaveAsync();
+                    await _categoryRepository.SaveAsync();
 
-                return new CategoryDto
+                    var addedCategory = new CategoryDto
+                    {
+                        Id = result.Id,
+                        Title = result.Title,
+                    };
+
+                    api.Success(addedCategory);
+
+                }
+                else
                 {
-                    Id = result.Id,
-                    Title = result.Title,
-                };
+                    api.ValidationError(validateResult.Errors.Select(s => s.ErrorMessage).ToList());
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                api.Error(ex.Message);
             }
 
-            var error =  validateResult.Errors.Select(a=>a.ErrorMessage).FirstOrDefault();
-            throw new Exception(error);
+            return api;
 
-            
         }
     }
 }

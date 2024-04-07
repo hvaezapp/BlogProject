@@ -1,4 +1,5 @@
-﻿using BlogProject.Application.Contract.Persistence;
+﻿using BlogProject.Application;
+using BlogProject.Application.Contract.Persistence;
 using BlogProject.Application.Dto.Category;
 using BlogProject.Application.Features.Category.Request.Commands;
 using BlogProject.Application.Features.Category.Request.Queries;
@@ -45,15 +46,15 @@ namespace BlogProject.WebApi.Controllers
         /// <returns></returns>
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateCategoryDto category)
+        public async Task<ApiResponseResult> Create([FromBody] CreateCategoryDto category)
         {
-         
-            var result = await _mediator
-                                    .Send(new CreateCategoryCommandRequest 
-                                    { 
-                                        CreateCategoryDto  = category
-                                    });
-            return Ok(result);
+
+            return await _mediator.Send(new CreateCategoryCommandRequest
+            {
+                CreateCategoryDto = category
+            });
+
+
         }
 
 

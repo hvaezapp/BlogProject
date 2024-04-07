@@ -3,7 +3,7 @@ using MediatR;
 
 namespace BlogProject.Application.Features.Category.Request.Commands
 {
-    public class CreateCategoryCommandRequest : IRequest<CategoryDto>
+    public class CreateCategoryCommandRequest : IRequest<ApiResponseResult>
     {
         public CreateCategoryDto CreateCategoryDto { get; set; }
     }
