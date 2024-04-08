@@ -1,4 +1,5 @@
-﻿using BlogProject.Application.Contract.Persistence;
+﻿using AutoMapper;
+using BlogProject.Application.Contract.Persistence;
 using BlogProject.Application.Dto.Category;
 using BlogProject.Application.Dto.Category.Validator;
 using BlogProject.Application.Features.Category.Request.Commands;
@@ -9,10 +10,13 @@ namespace BlogProject.Application.Features.Category.Handler.Commands
     public class CreateCategoryCommandRequestHandler : IRequestHandler<CreateCategoryCommandRequest, ApiResponseResult>
     {
         private readonly ICategoryRepository _categoryRepository;
+        private readonly IMapper _mapper;
 
-        public CreateCategoryCommandRequestHandler(ICategoryRepository categoryRepository)
+        public CreateCategoryCommandRequestHandler(ICategoryRepository categoryRepository , 
+             IMapper mapper)
         {
             _categoryRepository = categoryRepository;
+            _mapper = mapper;
         }
 
         public async Task<ApiResponseResult> Handle(CreateCategoryCommandRequest request, CancellationToken cancellationToken)
@@ -29,21 +33,16 @@ namespace BlogProject.Application.Features.Category.Handler.Commands
                 if (validateResult.IsValid)
                 {
                     // add data to table
-                    var newCategory = new Domain.entity.Category
-                    {
-                        Title = request.CreateCategoryDto.Title
-                    };
+                    var newCategory = _mapper
+                                         .Map<Domain.entity.Category>(request.CreateCategoryDto);
 
                     var result = await _categoryRepository
                                            .Create(newCategory);
 
                     await _categoryRepository.SaveAsync();
 
-                    var addedCategory = new CategoryDto
-                    {
-                        Id = result.Id,
-                        Title = result.Title,
-                    };
+                    var addedCategory = _mapper
+                                           .Map<CategoryDto>(result);
 
                     api.Success(addedCategory);
 

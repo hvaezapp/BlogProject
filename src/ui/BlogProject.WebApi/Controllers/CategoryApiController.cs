@@ -31,10 +31,10 @@ namespace BlogProject.WebApi.Controllers
         /// <returns></returns>
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<ApiResponseResult> GetAll()
         {
-            var result = await _mediator.Send(new GetAllCategoriesQueryRequest());
-            return Ok(result);
+            return await _mediator.Send(new GetAllCategoriesQueryRequest());
+             
         }
 
 
@@ -54,7 +54,7 @@ namespace BlogProject.WebApi.Controllers
                 CreateCategoryDto = category
             });
 
-
+            
         }
 
 

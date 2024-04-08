@@ -1,4 +1,5 @@
-﻿using BlogProject.Application.Contract.Persistence;
+﻿using AutoMapper;
+using BlogProject.Application.Contract.Persistence;
 using BlogProject.Application.Dto.Category;
 using BlogProject.Application.Features.Category.Request.Queries;
 using MediatR;
@@ -8,10 +9,13 @@ namespace BlogProject.Application.Features.Category.Handler.Queries
     public class GetAllCategoriesQueryRequestHandler : IRequestHandler<GetAllCategoriesQueryRequest, ApiResponseResult>
     {
         private readonly ICategoryRepository _categoryRepository;
+        private readonly IMapper _mapper;
 
-        public GetAllCategoriesQueryRequestHandler(ICategoryRepository categoryRepository)
+        public GetAllCategoriesQueryRequestHandler(ICategoryRepository categoryRepository , 
+                 IMapper mapper)
         {
             _categoryRepository = categoryRepository;
+            _mapper = mapper;
         }
 
         public async Task<ApiResponseResult> Handle(GetAllCategoriesQueryRequest request, CancellationToken cancellationToken)
@@ -20,17 +24,16 @@ namespace BlogProject.Application.Features.Category.Handler.Queries
 
             try
             {
-               
+
                 // get all categories from database 
                 var categories = await _categoryRepository
-                                        .GetAll();
+                                                  .GetAll();
 
-                var result = categories.Select(a => new CategoryDto
-                {
-                    Id = a.Id,
-                    Title = a.Title
 
-                }).ToList();
+
+                // auto mapping 
+                var result = _mapper
+                                 .Map<List<CategoryDto>>(categories);
 
 
                 api.Success(result);

@@ -8,6 +8,7 @@ namespace BlogProject.Application.Configuration
     {
         public static void ConfigureServices(this IServiceCollection services)
         {
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddMediatR(Assembly.GetExecutingAssembly());
         }
     }
