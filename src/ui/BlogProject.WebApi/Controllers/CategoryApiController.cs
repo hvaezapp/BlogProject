@@ -1,5 +1,6 @@
 ﻿using BlogProject.Application;
 using BlogProject.Application.Contract.Persistence;
+using BlogProject.Application.Dto;
 using BlogProject.Application.Dto.Category;
 using BlogProject.Application.Features.Category.Request.Commands;
 using BlogProject.Application.Features.Category.Request.Queries;
@@ -34,7 +35,7 @@ namespace BlogProject.WebApi.Controllers
         public async Task<ApiResponseResult> GetAll()
         {
             return await _mediator.Send(new GetAllCategoriesQueryRequest());
-             
+
         }
 
 
@@ -54,7 +55,7 @@ namespace BlogProject.WebApi.Controllers
                 CreateCategoryDto = category
             });
 
-            
+
         }
 
 
@@ -66,12 +67,9 @@ namespace BlogProject.WebApi.Controllers
         /// <returns></returns>
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] Category category)
+        public async Task<ApiResponseResult> Update([FromBody] UpdateCategoryDto category)
         {
-            var entity = await _categoryRepository.Update(category);
-            await _categoryRepository.SaveAsync();
-
-            return Ok(entity);
+           return await _mediator.Send(new UpdateCategoryCommandRequest { UpdateCategoryDto = category });
         }
 
 

@@ -12,7 +12,7 @@ namespace BlogProject.Application.Features.Category.Handler.Commands
         private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
 
-        public CreateCategoryCommandRequestHandler(ICategoryRepository categoryRepository , 
+        public CreateCategoryCommandRequestHandler(ICategoryRepository categoryRepository,
              IMapper mapper)
         {
             _categoryRepository = categoryRepository;
