@@ -12,7 +12,7 @@ namespace BlogProject.Application
 
         //.............
 
-        public void Success(object value)
+        public void Success(object value=null)
         {
             status = ApiResponseStatus.Success;
             message = nameof(ApiResponseStatus.Success);
