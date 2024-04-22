@@ -21,7 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Post\" />
+    <Folder Include="Features\Post\Handler\Commands\" />
+    <Folder Include="Features\Post\Request\Commands\" />
   </ItemGroup>
 
 </Project>

@@ -19,7 +19,8 @@ namespace BlogProject.Persistence.Configuration.Repositories
             // Configure Repositories
 
             services.AddScoped(typeof(IRepository<>),typeof(Repository<>));
-            services.AddScoped<ICategoryRepository,CategoryRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IPostRepository, PostRepository>();
 
         }
     }
