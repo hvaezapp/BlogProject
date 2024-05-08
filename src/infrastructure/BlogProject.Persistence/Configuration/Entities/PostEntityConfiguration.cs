@@ -31,7 +31,7 @@ namespace BlogProject.Persistence.Configuration.Entities
 
 
             builder
-                .Property(a => a.Desription)
+                .Property(a => a.Description)
                 .IsRequired();
 
 

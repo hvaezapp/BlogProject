@@ -1,5 +1,4 @@
 ﻿using BlogProject.Application;
-using BlogProject.Application.Dto;
 using BlogProject.Application.Dto.Category;
 using BlogProject.Application.Features.Category.Request.Commands;
 using BlogProject.Application.Features.Category.Request.Queries;
@@ -13,6 +12,8 @@ namespace BlogProject.WebApi.Controllers
     public class CategoryApiController(IMediator _mediator) : ControllerBase
     {
 
+
+
         /// <summary>
         /// دریافت لیست دسته بندی ها
         /// </summary>
@@ -24,6 +25,7 @@ namespace BlogProject.WebApi.Controllers
             return await _mediator.Send(new GetAllCategoriesQueryRequest());
 
         }
+
 
 
 
@@ -42,8 +44,8 @@ namespace BlogProject.WebApi.Controllers
                 CreateCategoryDto = category
             });
 
-
         }
+
 
 
 
@@ -58,6 +60,7 @@ namespace BlogProject.WebApi.Controllers
         {
             return await _mediator.Send(new UpdateCategoryCommandRequest { UpdateCategoryDto = category });
         }
+
 
 
 

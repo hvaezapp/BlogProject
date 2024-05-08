@@ -1,4 +1,6 @@
-﻿using BlogProject.Application.Features.Post.Request.Queries;
+﻿using BlogProject.Application.Dto.Post;
+using BlogProject.Application.Features.Post.Request.Commands;
+using BlogProject.Application.Features.Post.Request.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,6 +16,15 @@ namespace BlogProject.WebApi.Controllers
         {
             return Ok(await _mediator.Send(new GetAllPostsQueryRequest()));
         }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] CreatePostDto dto)
+        {
+            return Ok(await _mediator.Send(new CreatePostCommandRequest { CreatePostDto = dto }));
+        }
+
+
 
     }
 }

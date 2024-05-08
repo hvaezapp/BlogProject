@@ -13,7 +13,7 @@ namespace BlogProject.Domain.entity
         public long CategoryId { get; set; }
         public string Title { get;set; }
         public string Summary { get; set; }
-        public string Desription { get; set; }
+        public string Description { get; set; }
         public string ImageUrl { get; set; }
         public int ViewCount { get; set; }
 
@@ -23,5 +23,11 @@ namespace BlogProject.Domain.entity
 
         [ForeignKey(nameof(CategoryId))]
         public Category Category { get; set; }
+
+
+        public Post()
+        {
+           ViewCount = 0;
+        }
     }
 }

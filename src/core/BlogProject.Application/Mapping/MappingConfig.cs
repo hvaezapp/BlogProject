@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using BlogProject.Application.Dto;
 using BlogProject.Application.Dto.Category;
 using BlogProject.Application.Dto.Post;
 using BlogProject.Domain.entity;
@@ -12,13 +11,14 @@ namespace BlogProject.Application.Mapper
         public MappingConfig()
         {
             #region Category
-            CreateMap<Category, CategoryDto>();
+            CreateMap<Category, GetCategoryDto>();
             CreateMap<CreateCategoryDto, Category>();
             CreateMap<UpdateCategoryDto, Category>();
             #endregion Category
 
             #region Post
-            CreateMap<Post, PostDto>();
+            CreateMap<CreatePostDto, Post>();
+            CreateMap<Post, GetPostDto>();
             #endregion Post
         }
     }

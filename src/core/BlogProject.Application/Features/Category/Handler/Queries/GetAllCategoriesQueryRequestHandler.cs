@@ -33,7 +33,7 @@ namespace BlogProject.Application.Features.Category.Handler.Queries
 
                 // auto mapping 
                 var result = _mapper
-                                 .Map<List<CategoryDto>>(categories);
+                                 .Map<List<GetCategoryDto>>(categories);
 
 
                 api.Success(result);

@@ -42,7 +42,7 @@ namespace BlogProject.Application.Features.Category.Handler.Commands
                     await _categoryRepository.SaveAsync();
 
                     var addedCategory = _mapper
-                                           .Map<CategoryDto>(result);
+                                           .Map<GetCategoryDto>(result);
 
                     api.Success(addedCategory);
 

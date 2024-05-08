@@ -22,7 +22,7 @@ namespace BlogProject.Application.Features.Post.Handler.Queries
 
                 // auto mapping 
                 var result = _mapper
-                                 .Map<List<PostDto>>(posts);
+                                 .Map<List<GetPostDto>>(posts);
 
 
                 api.Success(result);
