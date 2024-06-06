@@ -18,6 +18,7 @@ namespace BlogProject.Application.Mapper
 
             #region Post
             CreateMap<CreatePostDto, Post>();
+            CreateMap<UpdatePostDto, Post>();
             CreateMap<Post, GetPostDto>();
             #endregion Post
         }

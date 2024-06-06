@@ -50,6 +50,7 @@ namespace BlogProject.Persistence.Repositories
         public async Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>> expression)
         {
             return await _table
+                           .AsNoTracking()
                            .Where(expression)
                            .ToListAsync();
         }

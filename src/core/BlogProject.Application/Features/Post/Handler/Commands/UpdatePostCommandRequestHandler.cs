@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
 using BlogProject.Application.Contract.Persistence;
 using BlogProject.Application.Dto.Post;
-using BlogProject.Application.Features.Category.Request.Commands;
 using BlogProject.Application.Features.Post.Request.Commands;
-using BlogProject.Domain.entity;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -13,46 +11,40 @@ using System.Threading.Tasks;
 
 namespace BlogProject.Application.Features.Post.Handler.Commands
 {
-    public class CreatePostCommandRequestHandler : IRequestHandler<CreatePostCommandRequest, ApiResponseResult>
+    public class UpdatePostCommandRequestHandler : IRequestHandler<UpdatePostCommandRequest, ApiResponseResult>
     {
         private readonly IPostRepository _postRepository;
         private readonly IMapper _mapper;
 
-        public CreatePostCommandRequestHandler(IPostRepository postRepository, IMapper mapper)
+        public UpdatePostCommandRequestHandler(IPostRepository postRepository, IMapper mapper)
         {
             _postRepository = postRepository;
             _mapper = mapper;
         }
 
 
-        public async Task<ApiResponseResult> Handle(CreatePostCommandRequest request, CancellationToken cancellationToken)
+        public async Task<ApiResponseResult> Handle(UpdatePostCommandRequest request, CancellationToken cancellationToken)
         {
             var api = new ApiResponseResult();
 
             try
             {
-           
+                var updateblePost = _mapper.Map<Domain.entity.Post>(request.UpdatePostDto);
 
-                var  post =  _mapper.Map<Domain.entity.Post>(request.CreatePostDto);
-
-                await _postRepository.Create(post);
+                await _postRepository.Update(updateblePost);
                 await _postRepository.SaveAsync();
 
-
-                var result = _mapper.Map<GetPostDto>(post);
+                var result = _mapper.Map<GetPostDto>(updateblePost);
 
                 api.Success(result);
 
             }
             catch (Exception ex)
             {
-
                 api.Error(ex.Message);
             }
 
             return api;
         }
-
-
     }
 }
