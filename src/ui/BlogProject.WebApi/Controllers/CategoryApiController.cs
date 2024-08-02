@@ -7,9 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlogProject.WebApi.Controllers
 {
-    [Route("api/[controller]/[action]")]
-    [ApiController]
-    public class CategoryApiController(IMediator _mediator) : ControllerBase
+
+    public class CategoryApiController(IMediator _mediator) : BaseController
     {
 
 

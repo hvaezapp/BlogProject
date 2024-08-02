@@ -20,4 +20,9 @@
     <ProjectReference Include="..\BlogProject.Domain\BlogProject.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\PostTag\Handler\Queries\" />
+    <Folder Include="Features\PostTag\Request\Queries\" />
+  </ItemGroup>
+
 </Project>

@@ -2,6 +2,7 @@
 using BlogProject.Application.Contract.Persistence;
 using BlogProject.Application.Dto.Post;
 using BlogProject.Application.Features.Post.Request.Queries;
+using BlogProject.Infrastructure.Enums;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace BlogProject.Application.Features.Post.Handler.Queries
             var api = new ApiResponseResult();
             try
             {
-                var post = await _postRepository.GetById(request.PostId);
+                var post = await _postRepository.FirstOrDefualt(a=>a.Id == request.PostId , Joins.PostTags , Joins.Category);
 
                 if (post == null)
                     throw new Exception($"پست مورد نظر  شناسه {request.PostId} یافت نشد");

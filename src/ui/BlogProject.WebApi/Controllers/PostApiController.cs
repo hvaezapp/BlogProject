@@ -6,9 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlogProject.WebApi.Controllers
 {
-    [Route("api/[controller]/[action]")]
-    [ApiController]
-    public class PostApiController(IMediator _mediator) : ControllerBase
+   
+    public class PostApiController(IMediator _mediator) : BaseController
     {
 
         [HttpGet]
@@ -43,6 +42,9 @@ namespace BlogProject.WebApi.Controllers
             var result = await _mediator.Send(new UpdatePostCommandRequest { UpdatePostDto = dto });
             return Ok(result); 
         }
+
+
+        // پیاده سازی وبسرویس حذف پست خبری 
 
 
     }

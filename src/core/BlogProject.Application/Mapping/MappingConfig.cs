@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BlogProject.Application.Dto.Category;
 using BlogProject.Application.Dto.Post;
+using BlogProject.Application.Dto.PostTag;
 using BlogProject.Domain.entity;
 using Microsoft.Extensions.Hosting;
 
@@ -14,13 +15,20 @@ namespace BlogProject.Application.Mapper
             CreateMap<Category, GetCategoryDto>();
             CreateMap<CreateCategoryDto, Category>();
             CreateMap<UpdateCategoryDto, Category>();
-            #endregion Category
+            #endregion
 
             #region Post
             CreateMap<CreatePostDto, Post>();
             CreateMap<UpdatePostDto, Post>();
             CreateMap<Post, GetPostDto>();
-            #endregion Post
+            #endregion 
+
+
+
+            #region PostTag
+            CreateMap<CreatePostTagDto, PostTag>();
+            CreateMap<PostTag, GetPostTagDto>();
+            #endregion
         }
     }
 }

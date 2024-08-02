@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using BlogProject.Infrastructure.Enums;
+using System.Linq.Expressions;
 
 namespace BlogProject.Application.Contract.Persistence
 {
@@ -13,6 +14,8 @@ namespace BlogProject.Application.Contract.Persistence
 
         Task<T> Create(T entity);
         Task<IEnumerable<T>> GetAll();
+        Task<T> FirstOrDefualt(Expression<Func<T, bool>> expression, params Joins[] joins);
+        Task<IEnumerable<T>> GetAll(params Joins[] joins);
         Task<IEnumerable<T>> GetAll(Expression<Func<T,bool>> expression);
         Task<T> Update(T entity);
         Task Delete(T entity);

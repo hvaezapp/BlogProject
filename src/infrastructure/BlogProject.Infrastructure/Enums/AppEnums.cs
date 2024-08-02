@@ -7,4 +7,11 @@
         ValidationError = 2,
 
     }
+
+
+    public enum Joins
+    {
+        PostTags,
+        Category
+    }
 }

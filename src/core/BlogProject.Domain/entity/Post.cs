@@ -20,10 +20,12 @@ namespace BlogProject.Domain.entity
 
 
         // relation
+        public virtual ICollection<PostTag> PostTags { get; set; } = [];
 
         [ForeignKey(nameof(CategoryId))]
         public Category Category { get; set; }
 
+       
 
         public Post()
         {

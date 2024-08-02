@@ -21,6 +21,7 @@ namespace BlogProject.Persistence.Configuration.Repositories
             services.AddScoped(typeof(IRepository<>),typeof(Repository<>));
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IPostRepository, PostRepository>();
+            services.AddScoped<IPostTagRepository, PostTagRepository>();
 
         }
     }

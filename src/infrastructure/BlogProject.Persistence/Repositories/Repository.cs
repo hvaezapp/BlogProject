@@ -1,5 +1,6 @@
 ﻿using Azure.Core;
 using BlogProject.Application.Contract.Persistence;
+using BlogProject.Infrastructure.Enums;
 using BlogProject.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -42,8 +43,17 @@ namespace BlogProject.Persistence.Repositories
 
         public async Task<IEnumerable<T>> GetAll()
         {
-           
-            return await _table.ToListAsync();
+            return await _table.AsNoTracking().ToListAsync();
+        }
+
+        public async Task<IEnumerable<T>> GetAll(params Joins[] joins)
+        {
+            var query = _table.AsQueryable();
+
+            foreach (var join in joins)
+                query = query.Include(join.ToString());
+
+            return await query.AsNoTracking().ToListAsync();
         }
 
 
@@ -58,6 +68,22 @@ namespace BlogProject.Persistence.Repositories
         public async Task<T> GetById(long id)
         {
             return await _table.FindAsync(id);
+        }
+
+
+        public async Task<T> FirstOrDefualt(Expression<Func<T, bool>> expression , params Joins[] joins)
+        {
+            var query = _table.AsQueryable();
+
+            if (expression != null)
+                query = query.Where(expression);
+
+            foreach (var join in joins)
+                query = query.Include(join.ToString());
+
+
+            return await query.AsNoTracking().FirstOrDefaultAsync();
+
         }
 
 
@@ -80,4 +106,7 @@ namespace BlogProject.Persistence.Repositories
 
 
     }
+
+
+  
 }

@@ -2,6 +2,7 @@
 using BlogProject.Application.Contract.Persistence;
 using BlogProject.Application.Dto.Post;
 using BlogProject.Application.Features.Post.Request.Queries;
+using BlogProject.Infrastructure.Enums;
 using MediatR;
 
 namespace BlogProject.Application.Features.Post.Handler.Queries
@@ -17,13 +18,10 @@ namespace BlogProject.Application.Features.Post.Handler.Queries
             {
 
                 // get all posts from database 
-                var posts = await _postRepository
-                                                  .GetAll();
+                var posts = await _postRepository.GetAll(Joins.PostTags , Joins.Category);
 
-                // auto mapping 
-                var result = _mapper
-                                 .Map<List<GetPostDto>>(posts);
-
+                //  mapping 
+                var result = _mapper.Map<List<GetPostDto>>(posts);
 
                 api.Success(result);
             }
