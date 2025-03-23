@@ -1,4 +1,4 @@
-BlogProject is a .NET 8-based application utilizing a Clean Architecture design. It implements several patterns and tools such as CQRS, Mediator, AutoMapper, FluentValidation, and the Repository Pattern. The database used is SQL Server.
+BlogProject is a .NET 8 application utilizing a Clean Architecture design. It implements several patterns and tools such as CQRS, Mediator, AutoMapper, FluentValidation, and the Repository Pattern. The database used is SQL Server.
 
 Features
 
