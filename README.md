@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlogProject - README</title>
-    <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; padding: 20px; }
-        h1, h2, h3 { color: #333; }
-        pre { background: #f4f4f4; padding: 10px; border-radius: 5px; }
-        code { font-family: Consolas, monospace; }
-    </style>
-</head>
-<body>
+
     <h1>BlogProject</h1>
     
     <h2>Overview</h2>
