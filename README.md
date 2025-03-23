@@ -1,77 +1,90 @@
+BlogProject
+BlogProject is a .NET 8-based application utilizing a Clean Architecture design. It implements several patterns and tools such as CQRS, Mediator, AutoMapper, FluentValidation, and the Repository Pattern. The database used is SQL Server.
 
-    <h1>BlogProject</h1>
-    
-    <h2>Overview</h2>
-    <p>BlogProject is a .NET 8-based web application that follows the Clean Architecture principles. It implements the CQRS pattern using MediatR and employs various modern development tools such as AutoMapper, FluentValidation, and the Repository Pattern. The application uses SQL Server as its database.</p>
-    
-    <h2>Technologies Used</h2>
-    <ul>
-        <li><strong>.NET 8</strong></li>
-        <li><strong>Clean Architecture</strong></li>
-        <li><strong>CQRS Pattern</strong></li>
-        <li><strong>MediatR</strong></li>
-        <li><strong>AutoMapper</strong></li>
-        <li><strong>FluentValidation</strong></li>
-        <li><strong>Repository Pattern</strong></li>
-        <li><strong>SQL Server</strong></li>
-    </ul>
-    
-    <h2>Getting Started</h2>
-    
-    <h3>Prerequisites</h3>
-    <p>Ensure you have the following installed:</p>
-    <ul>
-        <li><a href="https://dotnet.microsoft.com/en-us/download/dotnet/8.0">.NET 8 SDK</a></li>
-        <li><a href="https://www.microsoft.com/en-us/sql-server/sql-server-downloads">SQL Server</a></li>
-        <li><a href="https://visualstudio.microsoft.com/">Visual Studio 2022</a> or <a href="https://code.visualstudio.com/">VS Code</a></li>
-    </ul>
-    
-    <h3>Installation</h3>
-    <ol>
-        <li>Clone the repository:
-            <pre><code>git clone https://github.com/your-repo/BlogProject.git
-cd BlogProject</code></pre>
-        </li>
-        <li>Configure the database connection string in <code>appsettings.json</code>:
-            <pre><code>{
-  "ConnectionStrings": {
-    "DefaultConnection": "Server=YOUR_SERVER;Database=BlogProjectDB;Trusted_Connection=True;"
-  }
-}</code></pre>
-        </li>
-        <li>Apply database migrations:
-            <pre><code>dotnet ef database update</code></pre>
-        </li>
-        <li>Run the application:
-            <pre><code>dotnet run</code></pre>
-        </li>
-    </ol>
-    
-    <h2>Project Structure</h2>
-    <p>The project follows Clean Architecture principles and consists of the following layers:</p>
-    <ul>
-        <li><strong>Presentation</strong>: API controllers for handling requests.</li>
-        <li><strong>Application</strong>: Contains CQRS handlers, validation, and business logic.</li>
-        <li><strong>Domain</strong>: Defines core business entities.</li>
-        <li><strong>Infrastructure</strong>: Handles data access and repository implementations.</li>
-    </ul>
-    
-    <h2>Features</h2>
-    <ul>
-        <li>Implements CQRS for command-query separation.</li>
-        <li>Uses MediatR for request handling and decoupling.</li>
-        <li>AutoMapper for efficient object mapping.</li>
-        <li>FluentValidation for model validation.</li>
-        <li>Repository Pattern for better data management.</li>
-    </ul>
-    
-    <h2>Contribution</h2>
-    <p>Feel free to fork the repository and submit pull requests. Any contributions are welcome!</p>
-    
-    <h2>License</h2>
-    <p>This project is licensed under the MIT License.</p>
-    
-    <h2>Contact</h2>
-    <p>For any inquiries, please contact <strong>your-email@example.com</strong>.</p>
-</body>
-</html>
+Features
+Clean Architecture: The project follows the principles of Clean Architecture, ensuring a well-organized and maintainable codebase.
+
+CQRS: Command Query Responsibility Segregation (CQRS) is implemented to separate read and write operations.
+
+MediatR: MediatR is used to implement the Mediator pattern, providing a way to decouple request and handler logic.
+
+AutoMapper: AutoMapper is used to simplify object-to-object mapping between DTOs and entities.
+
+FluentValidation: FluentValidation is used for validation of input data in a fluent and clean manner.
+
+Repository Pattern: The repository pattern is used to abstract data access logic and provide a clean API for interacting with the database.
+
+SQL Server: SQL Server is used as the database to store data.
+
+Getting Started
+To get started with this project locally, follow the steps below:
+
+Prerequisites
+.NET 8 or higher
+
+SQL Server (can be local or remote)
+
+Visual Studio or any other IDE for .NET development
+
+Installation
+Clone this repository to your local machine:
+
+bash
+Copy
+Edit
+git clone https://github.com/your-username/BlogProject.git
+Open the solution in Visual Studio or your preferred IDE.
+
+Restore the NuGet packages:
+
+bash
+Copy
+Edit
+dotnet restore
+Set up your SQL Server database by updating the appsettings.json file with your database connection string.
+
+Run the application:
+
+bash
+Copy
+Edit
+dotnet run
+Access the application at http://localhost:5000 or the relevant port.
+
+Database Setup
+To set up the database schema, you can either use migrations or manually apply the schema:
+
+To create migrations and update the database, run the following commands:
+
+bash
+Copy
+Edit
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+Structure
+The project follows Clean Architecture with the following layers:
+
+Core: Contains business logic, domain models, and interfaces.
+
+Application: Contains use cases, CQRS commands, queries, and application logic.
+
+Infrastructure: Contains data access implementation using Entity Framework and the repository pattern.
+
+API: The entry point to the application, containing the web API controllers.
+
+Patterns and Tools
+CQRS: Used to separate commands (write operations) and queries (read operations) for better scalability and maintenance.
+
+MediatR: Facilitates communication between components through the Mediator pattern, reducing dependencies between components.
+
+AutoMapper: Used for mapping objects, simplifying DTO to entity conversions and vice versa.
+
+FluentValidation: Used to validate request data, ensuring that invalid data is rejected before it reaches the business logic layer.
+
+Repository Pattern: Abstracts data access logic, making it easier to test and modify without affecting the business logic.
+
+Contributing
+If you want to contribute to the project, please fork the repository, make your changes, and submit a pull request.
+
+License
+This project is licensed under the MIT License - see the LICENSE file for details.
