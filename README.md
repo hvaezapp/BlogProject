@@ -28,7 +28,9 @@ BlogProject is a .NET 8 application built using **Clean Architecture** principle
 ## 🗂️ Project Structure
 
 /Core
+
 /Infrastructure
+
 /UI
 
 ## ⚙️ Technologies Used
