@@ -47,8 +47,8 @@ BlogProject is a .NET 8 application built using **Clean Architecture** principle
 
 ### Prerequisites
 
-- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
-- [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
+- .NET 8
+- SQL Server
 
 ### Setup
 
