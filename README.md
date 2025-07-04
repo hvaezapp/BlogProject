@@ -55,4 +55,4 @@ BlogProject is a .NET 8 application built using **Clean Architecture** principle
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/BlogProject.git
+   git clone https://github.com/hvaezapp/BlogProject.git
