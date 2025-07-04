@@ -56,3 +56,10 @@ BlogProject is a .NET 8 application built using **Clean Architecture** principle
 
    ```bash
    git clone https://github.com/hvaezapp/BlogProject.git
+
+2. Run :
+
+   ```bash
+   dotnet restore
+   dotnet build
+   dotnet run
