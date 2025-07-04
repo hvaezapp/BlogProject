@@ -1,17 +1,56 @@
-BlogProject is a .NET 8 application utilizing a Clean Architecture design. It implements several patterns and tools such as CQRS, Mediator, AutoMapper, FluentValidation, and the Repository Pattern. The database used is SQL Server.
+# BlogProject
 
-Features
+BlogProject is a .NET 8 application built using **Clean Architecture** principles. The project is designed to be maintainable, scalable, and testable, and it leverages modern design patterns and tools such as **CQRS**, **MediatR**, **AutoMapper**, **FluentValidation**, and the **Repository Pattern**. The application uses **SQL Server** as its database.
 
-Clean Architecture: The project follows the principles of Clean Architecture, ensuring a well-organized and maintainable codebase.
+## 🚀 Features
 
-CQRS: Command Query Responsibility Segregation (CQRS) is implemented to separate read and write operations.
+- **Clean Architecture**  
+  Ensures a well-organized, maintainable, and scalable codebase by separating concerns and enforcing clear boundaries between layers.
 
-MediatR: MediatR is used to implement the Mediator pattern, providing a way to decouple request and handler logic.
+- **CQRS (Command Query Responsibility Segregation)**  
+  Separates read and write operations to improve performance, scalability, and maintainability.
 
-AutoMapper: AutoMapper is used to simplify object-to-object mapping between DTOs and entities.
+- **MediatR (Mediator Pattern)**  
+  Decouples the request handling logic, making the code more modular and easier to test.
 
-FluentValidation: FluentValidation is used for validation of input data in a fluent and clean manner.
+- **AutoMapper**  
+  Simplifies object-to-object mapping between DTOs (Data Transfer Objects) and domain entities, reducing boilerplate code.
 
-Repository Pattern: The repository pattern is used to abstract data access logic and provide a clean API for interacting with the database.
+- **FluentValidation**  
+  Provides a clean, fluent interface for validating user input and business logic.
 
-SQL Server: SQL Server is used as the database to store data.
+- **Repository Pattern**  
+  Abstracts data access logic, providing a clean API for interacting with the database and enabling easier testing and maintenance.
+
+- **SQL Server**  
+  Reliable and powerful database engine used to store and manage application data.
+
+## 🗂️ Project Structure
+
+/Core
+/Infrastructure
+/UI
+
+## ⚙️ Technologies Used
+
+- .NET 8
+- MediatR
+- AutoMapper
+- FluentValidation
+- SQL Server
+- Entity Framework Core
+- ASP.NET Core Web API
+
+## 💡 Getting Started
+
+### Prerequisites
+
+- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+- [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
+
+### Setup
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/yourusername/BlogProject.git
